@@ -120,8 +120,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=codethue',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'trungsun',
+			'username' => 'devyii',
+			'password' => 'devyiip',
 			'charset' => 'utf8',
 		),
 		
