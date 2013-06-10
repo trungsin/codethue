@@ -52,8 +52,14 @@ class ProjectsController extends RController
 	 */
 	public function actionView($id)
 	{
+		$bids = Projects::getBidOfProject($id);
+		if ($bids == null)
+			$bids = '0';
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'bids'=>$bids,
+			'avg' => Projects::getAvgBidProject($id),
 		));
 	}
 
