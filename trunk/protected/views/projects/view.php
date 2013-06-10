@@ -42,7 +42,12 @@ $this->menu=array(
                 <div class="margin-b5">Bids</div>
                 <div id="num-bids" class="text-blue larger bold">
                 <?php 
-                echo $model->bid;
+				if ($bids != 0)
+				{
+					echo CHtml::link($bids, array("bids/viewProjects","projectId"=>$model->projectId));
+				}
+				else
+					echo $bids;
                 ?>
                 </div>
             </div>
@@ -50,9 +55,10 @@ $this->menu=array(
                 <div class="margin-b5">Avg Bid (USD)</div>
                 <div class="text-blue larger bold">
                     
-                        
-                        
-                            $<span id="avg-bid">89</span>
+                        <?php
+						echo $avg;
+                        ?>
+                         
                         
                     
                     
