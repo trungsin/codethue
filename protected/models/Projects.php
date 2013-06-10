@@ -119,4 +119,15 @@ class Projects extends CodethueActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	public static function getBidOfProject($projectId)
+	{
+		return Yii::app()->db->createCommand('SELECT count(cost) FROM Bids Where projectId='.$projectId)->queryScalar();
+	}
+	public static function getAvgBidProject($projectId)
+	{
+		$count = Projects::getBidOfProject($projectId);
+		if ($count == 0)
+			return 0;
+		return Yii::app()->db->createCommand('SELECT sum(cost) FROM Bids Where projectId='.$projectId)->queryScalar()/$count;
+	}
 }

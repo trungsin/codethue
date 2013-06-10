@@ -43,9 +43,9 @@ class Bids extends CodethueActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, projectId, userbidId, cost, create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
-			array('comfirm', 'length', 'max'=>1),
-			array('dateComfirm, create_time, update_time', 'safe'),
+			array('id, cost', 'numerical', 'integerOnly'=>true),
+			//array('comfirm', 'length', 'max'=>1),
+			//array('dateComfirm, create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, projectId, userbidId, cost, comfirm, dateComfirm, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),

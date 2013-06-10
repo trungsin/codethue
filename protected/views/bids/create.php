@@ -13,6 +13,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Bids</h1>
+<h1>Create Bid For project <?php echo $project->projectName;?> of user <?php echo $user->username;?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,
+											   'project'=>$project,
+											   'user'>$user,
+											   )); ?>
