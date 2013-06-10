@@ -28,7 +28,7 @@ class BidsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'viewProjects'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -60,22 +60,27 @@ class BidsController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($projectID,$userID)
 	{
 		$model=new Bids;
-
+		$project = $this->loadProject($projectID);
+		$user = $this->loadUser($userID);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Bids']))
 		{
 			$model->attributes=$_POST['Bids'];
+			$model->projectId = $project->projectId;
+			$model->userbidId = $user->id;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'project'=>$project,
+			'user'=>$user,
 		));
 	}
 
@@ -131,6 +136,21 @@ class BidsController extends Controller
 	/**
 	 * Manages all models.
 	 */
+	 
+	public function actionViewProjects($projectId)
+	{
+		$dataProvider=new CActiveDataProvider('Bids', array(
+				'criteria'=>array(
+				'condition'=>'projectId='.$projectId,
+				'order'=>'create_time DESC',
+				
+			),
+		
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
 	public function actionAdmin()
 	{
 		$model=new Bids('search');
@@ -157,7 +177,26 @@ class BidsController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-
+	/**
+	 *
+	 */
+	public function loadProject($id)
+	{
+		$model=Projects::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+	/**
+	 *
+	 */
+	public function loadUser($id)
+	{
+		$model=User::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
 	/**
 	 * Performs the AJAX validation.
 	 * @param Bids $model the model to be validated
