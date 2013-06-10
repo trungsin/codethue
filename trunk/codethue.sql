@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2013 at 10:39 PM
+-- Generation Time: Jun 11, 2013 at 12:51 AM
 -- Server version: 5.1.54
 -- PHP Version: 5.3.24
 
@@ -125,7 +125,16 @@ CREATE TABLE IF NOT EXISTS `bids` (
   `update_time` datetime DEFAULT NULL,
   `update_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `bids`
+--
+
+INSERT INTO `bids` (`id`, `projectId`, `userbidId`, `cost`, `comfirm`, `dateComfirm`, `create_time`, `create_user_id`, `update_time`, `update_user_id`) VALUES
+(1, 2, 1, 3434, '0', NULL, '2013-06-10 21:08:24', 1, '2013-06-10 21:08:24', 1),
+(2, 2, 1, 3434, '0', NULL, '2013-06-10 22:25:04', 1, '2013-06-10 22:25:04', 1),
+(3, 2, 1, 2, '0', NULL, '2013-06-10 22:25:10', 1, '2013-06-10 22:25:10', 1);
 
 -- --------------------------------------------------------
 
@@ -155,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
 --
 
 INSERT INTO `projects` (`projectId`, `projectName`, `status`, `userId`, `Description`, `startday`, `endday`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `bid`, `ProjectBudget`) VALUES
-(2, 'sfdsf', '0', 1, 'fdsfdsf', '2013-06-18', 434, '2013-06-08 22:24:03', 1, NULL, NULL, 434, 434),
+(2, 'sfdsf', '0', 1, 'fdsfdsf', '2013-06-18', 434, '2013-06-08 22:24:03', 1, '2013-06-10 22:35:49', 1, 434, 434),
 (3, 'rtrt', '0', 1, 'rtrtretet', '2013-06-19', 43, '2013-06-08 22:24:23', 1, NULL, NULL, 43, 434),
 (4, 'fdfkjdsfhjk', '0', 1, 'kjhkjhkj', '2013-06-06', 44, '2013-06-09 16:37:19', 1, NULL, NULL, 88, 88),
 (5, 'dsfdfjkhjkh', '0', 1, 'kjhkjh', '2013-06-21', 88, '2013-06-09 16:37:42', 1, NULL, NULL, 888, 888),
@@ -306,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1370683299, 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1370883014, 1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 1370623122, 0, 1),
 (3, 'hire', 'ffcc0e05b4d178b931922711e35cf553', 'sink@jj.com', '56b6f8a4eaa4ecddd6ac922f3f083caf', 1370624256, 1370658781, 0, 1),
 (4, 'hire1', 'ffcc0e05b4d178b931922711e35cf553', 'sink@jfj.com', '46311ee70219bd62dab9120faa4e3da8', 1370624308, 1370624308, 0, 1);
