@@ -15,11 +15,6 @@ $this->menu=array(
 <h1>Bids</h1>
 
 <?php 
-$this->widget('zii.widgets.grid.CGridView', array(
-    'dataProvider'=>$dataProvider,
-    //'dataProvider'=>$model->search(),
-	//'filter'=>$model,
-    'columns'=>array(
 
 $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
