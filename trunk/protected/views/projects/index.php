@@ -16,12 +16,13 @@ $this->menu=array(
 	// 'dataProvider'=>$dataProvider,
 	// 'itemView'=>'_view',
     //)); 
-    $this->widget('zii.widgets.grid.CGridView', array(
+    //$this->widget('zii.widgets.grid.CGridView', array(
+    $this->widget('bootstrap.widgets.TbGridView', array(
+    'type'=>'striped bordered condensed',
     'dataProvider'=>$model->search(),
     //'dataProvider'=>$model->search(),
 	//'filter'=>$model,
     'columns'=>array(
-    
        'projectId',
        array(
 			'name'=>'projectName',
