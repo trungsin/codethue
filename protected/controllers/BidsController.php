@@ -147,8 +147,10 @@ class BidsController extends Controller
 			),
 		
 		));
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'projectName'=>Projects::getNameProject($projectId),
 		));
 	}
 	public function actionAdmin()
