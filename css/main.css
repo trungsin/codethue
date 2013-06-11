@@ -13,6 +13,8 @@ body
 	margin-bottom: 5px;
 	background: white;
 	border: 1px solid #C9E0ED;
+	border: 1px solid #D0D0D0;
+	-webkit-box-shadow: 0 0 8px #D0D0D0;
 }
 
 #header
@@ -162,7 +164,7 @@ div.search-form
 {
 	padding: 3px 8px;
 	background: #B7D6E7;
-	border-left: 5px solid #6FACCF;
+	/* border-left: 5px solid #6FACCF; */
 }
 
 .portlet-title
@@ -226,4 +228,44 @@ div.search-form
 .operations li a:hover
 {
 	background: #80CFFF;
+}
+.portlet > .portlet-decoration, .sidebar-nav > ul > li > a, .navbar li > a, th{
+	font-size:14px!important;
+}
+/* Start Portlets*/
+.portlet{
+	border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -khtml-border-radius: 3px;
+	border: 1px solid #d2d2d2;
+	box-shadow: rgba(0,0,0,0.1) 0px 1px 8px; -webkit-box-shadow: rgba(0,0,0,0.1) 0px 1px 8px; -moz-box-shadow: rgba(0,0,0,0.1) 0px 1px 8px; -khtml-box-shadow: rgba(0,0,0,0.05) 0px 1px 8px;
+	background: rgb(255, 255, 255);
+	margin-bottom:15px;
+}
+
+.portlet-decoration{
+	border-radius: 3px 3px 0px 0px; -webkit-border-radius: 3px 3px 0px 0px; -moz-border-radius: 3px 3px 0px 0px; -khtml-border-radius: 3px 3px 0px 0px;
+	font-weight: bold;
+	font-size: 14px !important;
+	color: #555555;
+	background: rgb(237, 237, 237);
+	padding: 8px;
+	border-bottom: 1px solid rgb(215, 215, 215);
+	border-top-left-radius: 3px; -webkit-border-top-left-radius: 3px; -moz-border-radius-topleft: 3px; -khtml-border-top-left-radius: 3px;
+	border-top-right-radius: 3px; -webkit-border-top-right-radius: 3px; -moz-border-radius-topright: 3px; -khtml-border-top-right-radius: 3px;
+	text-shadow: #fff 0px 1px 0px;
+	box-shadow: inset #fff 0px 1px 0px; -webkit-box-shadow: inset #fff 0px 1px 0px; -moz-box-shadow: inset #fff 0px 1px 0px; -khtml-box-shadow: inset #fff 0px 1px 0px;
+}
+
+.portlet-decoration [class^="icon-"], .portlet-decoration [class*=" icon-"] {
+
+  margin-right:5px;
+
+}
+.portlet-content{
+	padding:5px 10px 10px 10px;
+}
+.porlet-bottom {
+	z-index: 9999;
+  padding: 8px;
+  background-color: #f7f7f9;
+  border-top: 1px solid #e1e1e8;
 }
