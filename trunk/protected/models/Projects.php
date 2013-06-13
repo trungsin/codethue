@@ -130,11 +130,4 @@ class Projects extends CodethueActiveRecord
 			return 0;
 		return Yii::app()->db->createCommand('SELECT sum(cost) FROM Bids Where projectId='.$projectId)->queryScalar()/$count;
 	}
-	public static function getNameProject($projectId)
-	{
-	    $proname = Yii::app()->db->createCommand('Select ProjectName FROM projects where projectId='.$projectId)->queryScalar();
-		if ($proname == null)
-			return '';
-		return $proname;
-	}
 }
