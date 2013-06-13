@@ -12,41 +12,46 @@ $this->menu=array(
 ?>
 <h1>Projects</h1>
 
- <?php //$this->widget('zii.widgets.CListView', array(
-	// 'dataProvider'=>$dataProvider,
-	// 'itemView'=>'_view',
-    //)); 
-    //$this->widget('zii.widgets.grid.CGridView', array(
+<?php 
+	$controller = $this;
     $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=>$model->search(),
-    //'dataProvider'=>$model->search(),
-	//'filter'=>$model,
     'columns'=>array(
        'projectId',
        array(
 			'name'=>'projectName',
 			'type'=>'raw',
-			'value'=>'CHtml::link($data->projectName, array("projects/view","id"=>"$data->projectId"))',
+			//'value'=>'CHtml::link($data->projectName, array("projects/view","id"=>"$data->projectId"))',
+			'value' => function($data) use($controller)
+			{
+			    $controller->widget('bootstrap.widgets.TbButton', array(
+			        'label'=>$data->projectName,
+			        'buttonType'=>'link',
+			        'type'=>'link',
+			        //'size' => 'mini',
+			        'htmlOptions'=>array(
+			        	'data-title'=>$data->projectName,
+			            'data-placement'=>'right',
+			            //'data-content'=> $controller->renderPartial('_popover',
+			            //          array('data' => $data->projectName), true),
+			            'data-content'=> $data->Description,
+			            'rel'=>'popover',
+			            'data-trigger' => 'hover focus',
+			            'href' => array('projects/view','id'=>$data->projectId),
+			        ),
+			    ));
+			}
 		),
 		'startday',
         'endday',
         'bid',
 		'ProjectBudget',
     ),
-    // 'columns'=>array
-    // (
-        // array(            // display 'create_time' using an expression
-            // 'name'=>'Project Name',
-            // 'value'=>'date("M j, Y", $data->create_time)',
-        // ),
-        // array(            // display 'author.username' using an expression
-            // 'name'=>'authorName',
-            // 'value'=>'$data->author->username',
-        // ),
-        // array(            // display a column with "view", "update" and "delete" buttons
-            // 'class'=>'CButtonColumn',
-        // ),
-    // ),
 ));
 ?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("a[rel=popover]").popover({ trigger: "hover focus" });
+	});
+</script>

@@ -1,6 +1,7 @@
 <?php 
 	/* @var $this Controller */ 
 	Yii::app()->bootstrap->register();
+	//Yii::app()->bootstrap->registerAssetJs("bootstrap.js", CClientScript::POS_HEAD);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -41,7 +42,6 @@
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'Projects', 'url'=>array('/projects/index')),
-				array('label'=>'My Projects', 'url'=>array('/myProjects/index')),
 				array('label'=>'Login', 'url'=>array('/user/login'),
                                 array('label'=>'Rights', 'url'=>array('/rights'), 
  'visible'=>Yii::app()->user->isGuest),
@@ -49,6 +49,7 @@
             ),
 			),
 		)); ?>
+		
 	</div><!-- mainmenu -->
 	
 	<?php if(isset($this->breadcrumbs)):?>
