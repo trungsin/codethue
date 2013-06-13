@@ -87,7 +87,10 @@ class ProjectsController extends RController
           
 		));
 	}
-
+	public function actionAddSkills($id)
+	{	
+		
+	}	
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -153,6 +156,9 @@ class ProjectsController extends RController
 		if(isset($_POST['Projects']))
 		{
 			$model->attributes=$_POST['Projects'];
+			$max = Yii::app()->db->createCommand()->select('max(projectId) + 1 as max')->from('Projects')->queryScalar();
+			$model->isNewRecord = true;
+			$model->projectId = $max;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->projectId));
 		}
