@@ -14,7 +14,7 @@ return array(
 	'theme'=>'bootstrap',
 	
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log','bootstrap'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -28,7 +28,6 @@ return array(
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'12345678',
@@ -109,7 +108,9 @@ return array(
         ),
         'bootstrap'=>array(
             'class'=>'bootstrap.components.Bootstrap',
+            //'responsiveCss' => true,
         ),
+        
 	    // uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
