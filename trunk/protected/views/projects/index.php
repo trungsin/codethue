@@ -27,16 +27,16 @@ $this->menu=array(
 			{
 			    $controller->widget('bootstrap.widgets.TbButton', array(
 			        'label'=>$data->projectName,
-			        'buttonType'=>'link',
+			        //'buttonType'=>'link',
 			        'type'=>'link',
 			        //'size' => 'mini',
 			        'htmlOptions'=>array(
-			        	'data-title'=>$data->projectName,
-			            'data-placement'=>'right',
+			        	'data-title'=>$data->Description,
+			        	'data-placement'=>'right',
 			            //'data-content'=> $controller->renderPartial('_popover',
 			            //          array('data' => $data->projectName), true),
 			            'data-content'=> $data->Description,
-			            'rel'=>'popover',
+			            'rel'=>'tooltip',
 			            'data-trigger' => 'hover focus',
 			            'href' => array('projects/view','id'=>$data->projectId),
 			        ),
@@ -52,6 +52,7 @@ $this->menu=array(
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("a[rel=popover]").popover({ trigger: "hover focus" });
+		//$("a[rel=popover]").popover({ trigger: "hover focus", 'html': true });
+		$("a[rel=tooltip]").tooltip({ 'html': true });
 	});
 </script>
