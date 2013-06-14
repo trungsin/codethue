@@ -1454,7 +1454,7 @@
         , content = this.getContent()
 
       $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-      $tip.find('.popover-content')[this.options.html ? 'html' : 'text'](content)
+      $tip.find('.popover-content')[this.options.html ? 'html' : 'html'](content)
 
       $tip.removeClass('fade top bottom left right in')
     }
