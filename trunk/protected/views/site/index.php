@@ -3,18 +3,71 @@
 
 $this->pageTitle=Yii::app()->name;
 ?>
-
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<!--
+<div class="portlet">
+	<div class="portlet-content">
+	
+	</div>
+</div>
+<div class="portlet">
+	<div class="portlet-content">
+	
+	</div>
+</div>
+-->
+<div style="padding: 5px">
+	<div class="row-fluid">
+		<div class="span12">
+			<div style="height:150px"></div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+			<center><h3>Hire Freelancers and Find Freelance Jobs Online</h3></center>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="portlet">
+				<div class="portlet-content" style="text-align: center;">
+					<a href="#"><img src="images/image1.jpg"></a>
+				</div>
+				<div class="portlet-bottom">
+					<span class="pull-right">$220</span>
+					<span>Website Development</span><br>
+					<span class="small">By Kenz_Jr</span>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="portlet">
+				<div class="portlet-content" style="text-align: center;">
+					<a href="#"><img src="images/image4.jpg"></a>
+				</div>
+				<div class="portlet-bottom">
+					<span class="pull-right">$200</span>
+					<span>Mobile App Development</span><br>
+					<span class="small">By Kenz_Jr</span>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="portlet">
+				<div class="portlet-content" style="text-align: center;">
+					<a href="#"><img src="images/image5.jpg"></a>
+				</div>
+				<div class="portlet-bottom">
+					<span class="pull-right">$50</span>
+					<span>Article Writing</span><br>
+					<span class="small">By Kenz_Jr</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row-fluid">
+		<div class="span12">
+			<center><h3>Footer here</h3></center>
+		</div>
+	</div>
+</div>
