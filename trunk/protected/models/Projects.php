@@ -121,13 +121,13 @@ class Projects extends CodethueActiveRecord
 	}
 	public static function getBidOfProject($projectId)
 	{
-		return Yii::app()->db->createCommand('SELECT count(cost) FROM Bids Where projectId='.$projectId)->queryScalar();
+		return Yii::app()->db->createCommand('SELECT count(cost) FROM bids Where projectId='.$projectId)->queryScalar();
 	}
 	public static function getAvgBidProject($projectId)
 	{
 		$count = Projects::getBidOfProject($projectId);
 		if ($count == 0)
 			return 0;
-		return Yii::app()->db->createCommand('SELECT sum(cost) FROM Bids Where projectId='.$projectId)->queryScalar()/$count;
+		return Yii::app()->db->createCommand('SELECT sum(cost) FROM bids Where projectId='.$projectId)->queryScalar()/$count;
 	}
 }
