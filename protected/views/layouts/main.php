@@ -21,20 +21,33 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/global.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<style>
+	    body {
+		    font: 12px/18px "Lucida Grande";
+	    }
+    </style>
 </head>
 
 <body>
 
 <div class="container" id="page">
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); 
-		$roles=Rights::getAssignedRoles(Yii::app()->user->Id); // check for single role
-		//foreach($roles as $role)
-//if($role->name == 'clients')
-//{
-		//echo $role->name;
-		
-		?></div>
+		<!-- <div id="logo"></div> -->
+		<div class="row-fluid">
+    		<div class="span12" >
+				<div style="padding: 10px">
+					<table border="0" width="100%">
+						<tr>
+							<td width="15%" valign="middle" align="center"><img src="images/logo.jpeg" width="64px" /></td>
+							<td valign="middle">
+								<span style="font-size: 24pt;font-weight: bold; color: #08c;text-shadow: 2px 2px 2px rgba(150, 150, 150, 0.5);">Codethue.vn</span><br />
+								<span class="small"><i style="font-weight: bold; text-shadow: 1px 1px 2px rgba(150, 150, 150, 0.5);">Slogan</i></span>
+							</td>
+						</tr>
+					</table>
+				</div>
+    		</div>
+    	</div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
