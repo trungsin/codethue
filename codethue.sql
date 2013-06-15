@@ -21,91 +21,63 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `authassignment`
---
-
-CREATE TABLE IF NOT EXISTS `authassignment` (
+DROP TABLE IF EXISTS `AuthAssignment`;
+CREATE TABLE `AuthAssignment` (
   `itemname` varchar(64) NOT NULL,
   `userid` varchar(64) NOT NULL,
   `bizrule` text,
   `data` text,
-  PRIMARY KEY (`itemname`,`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`itemname`,`userid`),
+  CONSTRAINT `AuthAssignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `authassignment`
---
+-- ----------------------------
+--  Records of `authassignment`
+-- ----------------------------
+BEGIN;
+INSERT INTO `AuthAssignment` VALUES ('Admin', '1', null, 'N;'), ('hire', '2', null, 'N;'), ('hire', '3', null, 'N;'), ('Projects.*', '3', null, 'N;'), ('Projects.Create', '2', null, 'N;'), ('Projects.Create', '3', null, 'N;'), ('Projects.Delete', '2', null, 'N;'), ('Projects.Delete', '3', null, 'N;'), ('Projects.Index', '3', null, 'N;'), ('Projects.Update', '3', null, 'N;'), ('Projects.View', '3', null, 'N;');
+COMMIT;
 
-INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
-('Admin', '1', NULL, 'N;'),
-('hire', '2', NULL, 'N;'),
-('hire', '3', NULL, 'N;'),
-('Projects.*', '3', NULL, 'N;'),
-('Projects.Create', '2', NULL, 'N;'),
-('Projects.Create', '3', NULL, 'N;'),
-('Projects.Delete', '2', NULL, 'N;'),
-('Projects.Delete', '3', NULL, 'N;'),
-('Projects.Index', '3', NULL, 'N;'),
-('Projects.Update', '3', NULL, 'N;'),
-('Projects.View', '3', NULL, 'N;');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `authitem`
---
-
-CREATE TABLE IF NOT EXISTS `authitem` (
+-- ----------------------------
+--  Table structure for `authitem`
+-- ----------------------------
+DROP TABLE IF EXISTS `AuthItem`;
+CREATE TABLE `AuthItem` (
   `name` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
   `description` text,
   `bizrule` text,
   `data` text,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `authitem`
---
+-- ----------------------------
+--  Records of `authitem`
+-- ----------------------------
+BEGIN;
+INSERT INTO `AuthItem` VALUES ('Admin', '2', null, null, 'N;'), ('Authenticated', '2', null, null, 'N;'), ('Guest', '2', null, null, 'N;'), ('hire', '2', 'create project', 'ss', 'N;'), ('Projects.*', '1', null, null, 'N;'), ('Projects.Create', '0', null, null, 'N;'), ('Projects.Delete', '0', null, null, 'N;'), ('Projects.Index', '0', null, null, 'N;'), ('Projects.Update', '0', null, null, 'N;'), ('Projects.View', '0', null, null, 'N;');
+COMMIT;
 
-INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('Admin', 2, NULL, NULL, 'N;'),
-('Authenticated', 2, NULL, NULL, 'N;'),
-('Guest', 2, NULL, NULL, 'N;'),
-('hire', 2, 'create project', 'ss', 'N;'),
-('Projects.*', 1, NULL, NULL, 'N;'),
-('Projects.Create', 0, NULL, NULL, 'N;'),
-('Projects.Delete', 0, NULL, NULL, 'N;'),
-('Projects.Index', 0, NULL, NULL, 'N;'),
-('Projects.Update', 0, NULL, NULL, 'N;'),
-('Projects.View', 0, NULL, NULL, 'N;');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `authitemchild`
---
-
-CREATE TABLE IF NOT EXISTS `authitemchild` (
+-- ----------------------------
+--  Table structure for `authitemchild`
+-- ----------------------------
+DROP TABLE IF EXISTS `AuthItemChild`;
+CREATE TABLE `AuthItemChild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
   PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `child` (`child`),
+  CONSTRAINT `AuthItemChild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `AuthItemChild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `authitemchild`
---
+-- ----------------------------
+--  Records of `authitemchild`
+-- ----------------------------
+BEGIN;
+INSERT INTO `AuthItemChild` VALUES ('hire', 'Projects.*'), ('hire', 'Projects.Create'), ('hire', 'Projects.Delete'), ('hire', 'Projects.Index'), ('hire', 'Projects.Update'), ('hire', 'Projects.View');
+COMMIT;
 
-INSERT INTO `authitemchild` (`parent`, `child`) VALUES
-('hire', 'Projects.*'),
-('hire', 'Projects.Create'),
-('hire', 'Projects.Delete'),
-('hire', 'Projects.Index'),
-('hire', 'Projects.Update'),
-('hire', 'Projects.View');
 
 -- --------------------------------------------------------
 
@@ -157,24 +129,16 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `bid` int(11) DEFAULT NULL,
   `ProjectBudget` int(11) DEFAULT NULL,
   PRIMARY KEY (`projectId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`projectId`, `projectName`, `status`, `userId`, `Description`, `startday`, `endday`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `bid`, `ProjectBudget`) VALUES
-(2, 'sfdsf', '0', 1, 'fdsfdsf', '2013-06-18', 434, '2013-06-08 22:24:03', 1, '2013-06-10 22:35:49', 1, 434, 434),
-(3, 'rtrt', '0', 1, 'rtrtretet', '2013-06-19', 43, '2013-06-08 22:24:23', 1, NULL, NULL, 43, 434),
-(4, 'fdfkjdsfhjk', '0', 1, 'kjhkjhkj', '2013-06-06', 44, '2013-06-09 16:37:19', 1, NULL, NULL, 88, 88),
-(5, 'dsfdfjkhjkh', '0', 1, 'kjhkjh', '2013-06-21', 88, '2013-06-09 16:37:42', 1, NULL, NULL, 888, 888),
-(6, 'khhjkhkjhkj', '0', 1, 'jkkjhkjhk', '2013-06-14', 88, '2013-06-09 16:38:09', 1, NULL, NULL, 99, 99),
-(7, 'huhkhjkjk', '0', 1, 'hjkhjkh', '2013-06-10', 88, '2013-06-09 16:39:22', 1, NULL, NULL, 88, 88),
-(8, '4234hkjhfkjdsfhkj', '0', 1, 'kjhkjh', '2013-06-12', 889, '2013-06-09 16:39:39', 1, NULL, NULL, 999, 999),
-(9, 'hkjehefbbjk', '0', 1, 'klhjkhjk', '2013-06-20', 8, '2013-06-09 16:39:58', 1, NULL, NULL, 8, 9),
-(10, 'pljkjkfldkj', '0', 1, 'hkjhjkhk', '2013-06-09', 888, '2013-06-09 16:40:33', 1, NULL, NULL, 8888, 7777),
-(11, 'iyuiyiyiuykjnjkhkj', '0', 1, 'kjhjkhk', '2013-06-07', 888, '2013-06-09 16:40:50', 1, NULL, NULL, 8888, 888),
-(12, 'jkhkjhjk', '0', 1, 'jhkjhlk', '2013-06-12', 888, '2013-06-09 16:41:08', 1, NULL, NULL, 888, 888);
+BEGIN;
+INSERT INTO `projects` VALUES ('2', 'Project #1', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-18', '434', '2013-06-08 22:24:03', '1', '2013-06-14 09:48:43', '1', '434', '434'), ('3', 'Project #2', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-19', '43', '2013-06-08 22:24:23', '1', '2013-06-13 16:13:28', '1', '43', '434'), ('4', 'Project #3', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-06', '44', '2013-06-09 16:37:19', '1', '2013-06-13 16:13:53', '1', '88', '88'), ('5', 'Project #4', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-21', '88', '2013-06-09 16:37:42', '1', '2013-06-13 16:14:05', '1', '888', '888'), ('6', 'Project #5', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-14', '88', '2013-06-09 16:38:09', '1', '2013-06-13 16:14:19', '1', '99', '99'), ('7', 'Project #6', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-10', '88', '2013-06-09 16:39:22', '1', '2013-06-13 16:15:19', '1', '88', '88'), ('8', '4234hkjhfkjdsfhkj', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-12', '889', '2013-06-09 16:39:39', '1', null, null, '999', '999'), ('9', 'hkjehefbbjk', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-20', '8', '2013-06-09 16:39:58', '1', null, null, '8', '9'), ('10', 'pljkjkfldkj', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-09', '888', '2013-06-09 16:40:33', '1', null, null, '8888', '7777'), ('11', 'iyuiyiyiuykjnjkhkj', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-07', '888', '2013-06-09 16:40:50', '1', null, null, '8888', '888'), ('12', 'jkhkjhjk', '0', '1', 'Mô tả ở đây. Lorem ipsum dolor sit amet, vim nemore antiopam ea. In nam iracundia vituperata. Est no commodo quaestio, sea et dictas postulant, dicit aliquam neglegentur sed ea. Nec ei salutandi mnesarchum persequeris. Tale sanctus qui in, diam idque pericula his at. Qui ad zril soluta.', '2013-06-12', '888', '2013-06-09 16:41:08', '1', null, null, '888', '888');
+COMMIT;
+
 
 -- --------------------------------------------------------
 
@@ -194,12 +158,12 @@ CREATE TABLE IF NOT EXISTS `projectskills` (
 -- Table structure for table `rights`
 --
 
-CREATE TABLE IF NOT EXISTS `rights` (
+CREATE TABLE IF NOT EXISTS `Rights` (
   `itemname` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
   `weight` int(11) NOT NULL,
   PRIMARY KEY (`itemname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -347,21 +311,21 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 -- Constraints for table `authassignment`
 --
-ALTER TABLE `authassignment`
-  ADD CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `AuthAssignment`
+  ADD CONSTRAINT `AuthAssignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `authitemchild`
 --
-ALTER TABLE `authitemchild`
-  ADD CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `AuthItemChild`
+  ADD CONSTRAINT `AuthItemChild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `AuthItemChild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rights`
 --
-ALTER TABLE `rights`
-  ADD CONSTRAINT `rights_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Rights`
+  ADD CONSTRAINT `Rights_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
