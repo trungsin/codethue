@@ -1,4 +1,9 @@
 <?php
+/* @var $this SiteController */
+
+$this->pageTitle=Yii::app()->name;
+?>
+<?php
 /* @var $this ProjectsController */
 /* @var $dataProvider CActiveDataProvider */
 
@@ -50,9 +55,4 @@ $this->menu=array(
     ),
 ));
 ?>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("a[rel=popover]").popover({ 'html': true });
-		$("a[rel=tooltip]").tooltip({ 'html': true });
-	});
-</script>
+
