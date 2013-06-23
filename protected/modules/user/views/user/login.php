@@ -46,7 +46,11 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("Login")); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType'=>'submit',
+            'type'=>'primary',
+            'label'=>'Login',
+        )); ?>
 	</div>
 	
 <?php echo CHtml::endForm(); ?>
